@@ -16,11 +16,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_154159) do
 
   create_table "articles", force: :cascade do |t|
     t.string "author"
+    t.text "title"
     t.text "source"
-    t.integer "leaning"
     t.text "content"
-    t.integer "likes"
-    t.integer "dislikes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,7 +53,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_154159) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "username"
-    t.integer "karma_score"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
