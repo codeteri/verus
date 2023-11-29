@@ -8,6 +8,13 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :votes
 
-  validates :username, presence: true, length: { minimum: 2 }
-  validates :username, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'must be a valid email address' }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 30 }
+  validates :password, presence: true, length: { minimum: 8 }, if: :password_required?
+  validates :password_confirmation, presence: true, if: :password_required?
+
+  private
+  def password_required?
+    new_record? || password.present?
+  end
 end
