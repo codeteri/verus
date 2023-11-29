@@ -1,2 +1,17 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.featured {
+  padding: 20px;
+}
+
+.featured-articles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  padding-top: 20px;
+}

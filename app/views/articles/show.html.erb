@@ -1,0 +1,30 @@
+<div class="article-show">
+  <div class="article-header">
+    <div class="article-title"><h3><%= @article.title %></h3></div>
+    <div class="cover-image" style="background-image: url(https://ichef.bbci.co.uk/news/976/cpsprodpb/0376/production/_131768800_84891ceead1dacb05d4125eb505e830de51c45cb.jpg.webp)"></div>
+    <div class="article-infos">
+      <div class="col-md-6 infos-left">
+        <h5><%= @article.author %></h5>
+        <p><%= @article.source %></p>
+      </div>
+      <div class="col-md-3 infos-mid">
+        <p><%= @article.date %></p>
+      </div>
+      <div class="col-md-3 article-stats">
+        <i class="fa-regular fa-hand-pointer"> </i>
+        <p><%= @article_votes %></p>
+        <i class="fa-regular fa-message"> </i>
+        <p><%= @article_comments %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row article-body">
+    <div class="col-md-9 article-content">
+      <p><%= @article.content %></p>
+      <p>text text text</p>
+    </div>
+    <div class="col-md-3 article-sidebar">
+      <p>related articles</p>
+    </div>
+  </div>
+</div>

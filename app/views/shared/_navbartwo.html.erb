@@ -1,0 +1,18 @@
+<nav>
+  <div class="navbar-container">
+    <div class="nav-left">
+      <i class="fa-solid fa-house"> <%= link_to "", root_path %> </i>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <%= image_tag('veruslogo.png', alt: 'Logo', class: 'logo') %>
+    <div class="nav-right">
+      
+      <i class="fa-regular fa-user"></i>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+    </div>
+  </div>
+</nav>

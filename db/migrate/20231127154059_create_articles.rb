@@ -5,8 +5,6 @@ class CreateArticles < ActiveRecord::Migration[7.1]
       t.text :title
       t.text :source
       t.text :content
-      t.integer :likes
-      t.integer :dislikes
 
       t.timestamps
     end

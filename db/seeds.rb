@@ -10,12 +10,19 @@
 10.times do
   Article.create(
     author: Faker::Book.author,
+    title: Faker::Book.title,
     source: Faker::Internet.url,
-    leaning: rand(1..5),
     content: Faker::Lorem.paragraph,
-    likes: rand(100..500),
-    dislikes: rand(10..50),
+    date: Faker::Date.between(from: 2.days.ago, to: Date.today),
     created_at: Faker::Date.between(from: 2.days.ago, to: Date.today),
     updated_at: Faker::Date.between(from: 1.days.ago, to: Date.today)
   )
 end
+
+# puts "creating users..."
+# alice = User.create!(username: "Alice", email: "alice@example.com", password: "12345678")
+# bob = User.create!(username: "Bob", email: "bob@example.com", password: "12345678")
+# charlie = User.create!(username: "Charlie", email: "charlie@example.com", password: "12345678")
+# ramon = User.create!(username: "Ramon", email: "ramon@example.com", password: "12345678")
+
+# puts "Users created"

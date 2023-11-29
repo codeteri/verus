@@ -1,0 +1,44 @@
+<div class="featured">
+  <div class="heading"><h3>featured articles</h3></div>
+  <div class="featured-articles">
+    <% @featured_articles.each do |article| %>
+    <div class="article-card">
+      <!--background image will go here-->
+      <div class="article-card-text">
+        <h4><%= link_to article.title, article_path(article) %></h4>
+        <p><%= article.content[0,20] %>...</p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="row index-body">
+  <div class="col md-4 opposing-articles">
+    <div class="heading"><h3>flip your script</h3></div>
+    <div class="opposing">
+      <% @opposing_articles.each do |article| %>
+        <div class="article-card">
+          <!--background image will go here-->
+          <div class="article-card-text">
+            <h4><%= link_to article.title, article_path(article) %></h4>
+            <p><%= article.content[0,20] %>...</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col md-8 latest-articles">
+    <div class="heading"><h3>latest</h3></div>
+    <div class="latest">
+      <% @latest_articles.each do |article| %>
+        <div class="article-card">
+          <!--background image will go here-->
+          <div class="article-card-text">
+            <h4><%= link_to article.title, article_path(article) %></h4>
+            <p><%= article.content[0,20] %>...</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+.article-show {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.article-title {
+  height: 60px;
+  padding-left: 30px;
+  text-align: left;
+  align-items: flex-end;
+  border-radius: 1px;
+  border-style: solid;
+  border-color: red;
+}
+
+.cover-image {
+  background-size: cover;
+  background-position: center;
+  height: 380px;
+  // img {
+  //   width: 100%;
+  //   object-fit: cover;
+  // }
+}
+
+.article-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+
+  p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  }
+}
+
+.article-stats {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.article-content {
+  padding-left: 30px;
+  padding-right: 30px;
+
+  p {
+    font-size: 14px;
+    opacity: .9;
+    margin: 0;
+    }
+}
