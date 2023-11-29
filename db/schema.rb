@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_094648) do
     t.text "title"
     t.text "source"
     t.text "content"
+    t.integer "likes"
+    t.integer "dislikes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
