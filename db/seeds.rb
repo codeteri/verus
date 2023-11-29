@@ -7,3 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+10.times do
+  Article.create(
+    author: Faker::Book.author,
+    source: Faker::Internet.url,
+    leaning: rand(1..5),
+    content: Faker::Lorem.paragraph,
+    likes: rand(100..500),
+    dislikes: rand(10..50),
+    created_at: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    updated_at: Faker::Date.between(from: 1.days.ago, to: Date.today)
+  )
+end
