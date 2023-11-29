@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Top Stories</h1>
+  <!--//On the index page the headline title and photo needs to be displayed-->
+  <div class= “container”>
+    <% @articles.each do |article| %>
+      <h2><%= article.title %></h2>
+      <%= article.content %>
+      <%#= article.photo %>
+    <% end %>
+  </div>
+</div>
