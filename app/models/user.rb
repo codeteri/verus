@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :bookmarks
   has_many :votes
+
+  validates :username, presence: true, length: { minimum: 2 }
+  validates :username, uniqueness: true
 end
