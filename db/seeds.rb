@@ -1,5 +1,5 @@
 puts "creating articles..."
-10.times do
+5.times do
   Article.create(
     title: Faker::Book.title,
     author: Faker::Book.author,
