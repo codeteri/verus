@@ -24,6 +24,16 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to articles_path }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      else
+        format.html { redirect_to articles_path }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      end
+    end
   end
 
   private
@@ -33,6 +43,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:author, :date, :title, :content, :source)
+    params.require(:article).permit(:author, :date, :title, :content, :source, :photo_url)
   end
 end
