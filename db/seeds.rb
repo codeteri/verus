@@ -3,7 +3,6 @@ puts "creating articles..."
   Article.create(
     title: Faker::Book.title,
     author: Faker::Book.author,
-    title: Faker::Book.title,
     source: Faker::Internet.url,
     date: Faker::Date.between(from: 2.days.ago, to: Date.today),
     created_at: Faker::Date.between(from: 2.days.ago, to: Date.today),

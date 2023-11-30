@@ -43,7 +43,7 @@ export default class extends Controller {
       },
       body: JSON.stringify({
         "author": article.authors[0] ? article.authors[0].name : "Unknown",
-        "photo": article.image,
+        "photo_url": article.image,
         "title": article.title,
         "content": article.body,
         "source": article.source.title
