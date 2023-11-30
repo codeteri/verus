@@ -1,0 +1,44 @@
+/* app/assets/stylesheets/pages/_dashboard.scss */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #ccc;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #bbb;
+}
+
+.main-content {
+  flex: 3;
+  padding: 20px;
+  background-color: #b0b0b0; // Change this to any color you like
+  color: #ed0000;
+}

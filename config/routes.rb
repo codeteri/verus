@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     resources :votes, only: %i[create]
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [] do
+    get 'view/:view', to: 'pages#dashboard', on: :member, as: :view
+  end
+
+  get 'dashboard', to: 'pages#dashboard'
 end
