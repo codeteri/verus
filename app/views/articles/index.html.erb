@@ -4,7 +4,9 @@
     <div class="featured-articles">
       <% @featured_articles.each do |article| %>
       <div class="article-card">
-        <%= image_tag article.photo_url, alt: "Article photo" %>
+        <% if article.photo_url.present? %>
+          <%= image_tag article.photo_url, alt: "Article photo" %>
+        <% end %>
         <div class="article-card-text">
           <h4><%= link_to article.title, article_path(article) %></h4>
           <p><%= article.content[0, 20] %>...</p>
@@ -19,7 +21,9 @@
       <div class="opposing">
         <% @opposing_articles.each do |article| %>
           <div class="article-card">
-            <%= image_tag article.photo_url, alt: "Article photo" %>
+            <% if article.photo_url.present? %>
+              <%= image_tag article.photo_url, alt: "Article photo" %>
+            <% end %>
             <div class="article-card-text">
               <h4><%= link_to article.title, article_path(article) %></h4>
               <p><%= article.content[0, 20] %>...</p>
@@ -35,8 +39,6 @@
           <div class="article-card">
             <% if article.photo_url.present? %>
               <%= image_tag article.photo_url, alt: "Article photo" %>
-            <% else %>
-              <%=  %>
             <% end %>
             <div class="article-card-text">
               <h4><%= link_to article.title, article_path(article) %></h4>
