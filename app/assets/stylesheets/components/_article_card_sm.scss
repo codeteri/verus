@@ -1,0 +1,22 @@
+.article-card-sm {
+  height: 200px;
+  width: 250px;
+  position: relative;
+  border-radius: 1px;
+  border-style: solid;
+  border-color: red;
+
+  h5 {
+    font-size: 14px;
+    font-weight: bolder;
+    opacity: .7;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    opacity: .7;
+    margin: 0;
+    }
+
+}

@@ -4,11 +4,11 @@
     <div class="cover-image" style="background-image: url(https://ichef.bbci.co.uk/news/976/cpsprodpb/0376/production/_131768800_84891ceead1dacb05d4125eb505e830de51c45cb.jpg.webp)"></div>
     <div class="article-infos">
       <div class="col-md-6 infos-left">
-        <h5><%= @article.author %></h5>
-        <p><%= @article.source %></p>
+        <h5><%= @author %></h5>
+        <p><%= @source %></p>
       </div>
       <div class="col-md-3 infos-mid">
-        <p><%= @article.date %></p>
+        <p><%= @date %></p>
       </div>
       <div class="col-md-3 article-stats">
         <i class="fa-regular fa-hand-pointer"> </i>
@@ -20,11 +20,51 @@
   </div>
   <div class="row article-body">
     <div class="col-md-9 article-content">
-      <p><%= @article.content %></p>
-      <p>text text text</p>
+      <div class="article-content">
+        <p><%= @content %></p>
+        <p><%= @content %></p>
+      </div>
+      <div class="vote-card">
+        <h5>We value your perspective!</h5>
+        <p>How do you feel this article leaning politically?</p>
+          <%= simple_form_for(@new_vote, url: article_votes_path(@article), method: :post) do |form| %>
+          <div class="vote-box">
+            <div class="radio-buttons">
+              <%= form.collection_radio_buttons :value, [[1, 'Far Left'], [2, 'Left'], [3, 'Neutral'], [4, 'Right'], [5, 'Far Right']], :first, :last, item_wrapper_tag: :span, item_wrapper_class: 'no-label' %>
+            </div>
+            <div class="submit-vote">
+              <%= form.submit 'Submit Vote' %>
+            </div>
+          <% end %>
+          </div>
+      </div>
     </div>
     <div class="col-md-3 article-sidebar">
-      <p>related articles</p>
+      <div class="heading"><h5>related articles</h5></div>
+      <div class="related">
+        <% @related_articles.each do |article| %>
+          <div class="article-card-sm">
+            <!--background image will go here-->
+            <div class="article-card-text">
+              <h5><%= link_to article.title, article_path(article) %></h5>
+              <p><%= article.content[0,20] %>...</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="heading"><h5>opposing views</h5></div>
+      <div class="related">
+        <% @opposing_articles.each do |article| %>
+          <div class="article-card-sm">
+            <!--background image will go here-->
+            <div class="article-card-text">
+              <h5><%= link_to article.title, article_path(article) %></h5>
+              <p><%= article.content[0,20] %>...</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+
   </div>
 </div>

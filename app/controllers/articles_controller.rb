@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show]
+  before_action :set_article, only: %i[show article_leaning]
 
   def index
     @articles = Article.all
@@ -9,13 +9,28 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @articles = Article.all
     @article.votes.any? ? @article_votes = @article.votes.size : @article_votes = 0
     @article.comments.any? ? @article_comments = @article.comments.size : @article_comments = 0
-    # @date = @article.date
-    # @author = @article.author
-    # @title = @article.title
-    # @content = @article.content
-    # @source = @article.source
+    @related_articles = @articles.sample(2)
+    @opposing_articles = @articles.sample(2)
+
+    # adding votes needs work:
+    @new_vote = Vote.new
+
+    # refactoring to un-n+1 ?? :
+    @date = @article.date
+    @author = @article.author
+    @title = @article.title
+    @content = @article.content
+    @source = @article.source
+  end
+
+  def article_leaning
+    # tb
+    @all_votes = @article.votes
+    @votes_sum = @all_votes.sum
+    @leaning = @votes_sum.fdiv(@all_votes.size).round(0)
   end
 
   def new
