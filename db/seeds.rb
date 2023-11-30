@@ -3,10 +3,15 @@ puts "creating articles..."
   Article.create(
     title: Faker::Book.title,
     author: Faker::Book.author,
+    title: Faker::Book.title,
     source: Faker::Internet.url,
-    content: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false)
+    date: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    created_at: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    updated_at: Faker::Date.between(from: 1.days.ago, to: Date.today),
+    content: Faker::Lorem.paragraph_by_chars(number: 2000, supplemental: false)
   )
 end
+
 puts "creating Users..."
 10.times do
   User.create(
@@ -16,6 +21,7 @@ puts "creating Users..."
     password_confirmation: '123456'
   )
 end
+
 users = User.all
 articles = Article.all
 # Create some comments
@@ -27,3 +33,11 @@ puts "adding comments..."
     article: articles.sample
   )
 end
+
+# puts "creating users..."
+# alice = User.create!(username: "Alice", email: "alice@example.com", password: "12345678")
+# bob = User.create!(username: "Bob", email: "bob@example.com", password: "12345678")
+# charlie = User.create!(username: "Charlie", email: "charlie@example.com", password: "12345678")
+# ramon = User.create!(username: "Ramon", email: "ramon@example.com", password: "12345678")
+
+# puts "Users created"

@@ -1,0 +1,22 @@
+.article-card {
+  height: 250px;
+  width: 300px;
+  position: relative;
+  border-radius: 1px;
+  border-style: solid;
+  border-color: red;
+}
+
+.article-card-text {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    font-weight: bolder;
+  }
+}

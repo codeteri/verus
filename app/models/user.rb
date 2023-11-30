@@ -13,8 +13,16 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?
 
+  def leaning
+  end
+
+  def consensus
+  end
+
   private
+
   def password_required?
     new_record? || password.present?
   end
+
 end

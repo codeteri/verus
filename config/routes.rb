@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   root to: "articles#index"
   devise_for :users
 
-  resources :articles do
-    resources :bookmarks, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
-    resources :votes, only: [:create, :destroy]
+  resources :articles, except: %i[edit update destroy] do
+    resources :bookmarks, only: %i[create destroy]
+    resources :comments, only: %i[create edit update destroy]
+    resources :votes, only: %i[create]
   end
 
   resources :users, only: [:show]
