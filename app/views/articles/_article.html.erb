@@ -1,0 +1,7 @@
+<div class="article-card">
+  <!--background image will go here-->
+  <div class="article-card-text">
+    <h4><%= link_to article.title, article_path(article) %></h4>
+    <p><%= article.content[0,20] %>...</p>
+  </div>
+</div>
