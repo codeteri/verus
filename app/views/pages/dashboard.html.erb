@@ -1,0 +1,15 @@
+<!-- app/views/users/show.html.erb -->
+<div class="dashboard" data-controller="content-loader">
+  <div class="sidebar">
+    <h3>Dashboard</h3>
+    <%= link_to 'Chats', dashboard_path(view: 'chats'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
+    <%= link_to 'Bookmarked', dashboard_path(view: 'bookmarked'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
+    <%= link_to 'Account Details', dashboard_path(view: 'account_details'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
+  </div>
+
+  <div class="main-content" id="main-content">
+    <turbo-frame id="main-content-frame">
+  <!-- Content will be dynamically loaded here -->
+    </turbo-frame>
+  </div>
+</div>
