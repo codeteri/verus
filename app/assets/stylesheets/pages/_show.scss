@@ -4,6 +4,10 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+.article {
+  padding-top: 30px;
+}
+
 .article-head {
   padding-left: 30px;
   padding-right: 30px;
@@ -14,13 +18,34 @@
   display: flex;
   padding-top: 10px;
   padding-bottom: 5px;
-  padding-left: 30px;
+  // padding-left: 10px;
   padding-right: 30px;
   text-align: left;
   align-items: flex-end;
-  border-radius: 1px;
-  border-style: solid;
-  border-color: red;
+
+  h3 {
+    font-size: 24px;
+  };
+
+  // border-radius: 1px;
+  // border-style: solid;
+  // border-color: red;
+}
+
+.article-sidebar {
+  background-color: rgb(233, 233, 236);
+  padding-top: 30px;
+  align-content: center;
+}
+
+.sidebar-title {
+  display: flex;
+  text-align: left;
+  align-items: flex-end;
+  padding-left: 20px;
+  h5 {
+    font-weight: bolder;
+  }
 }
 
 .cover-image {
@@ -34,9 +59,8 @@
 }
 
 .article-infos {
-  padding-left: 30px;
-  padding-right: 30px;
-  padding: 16px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -49,14 +73,15 @@
   }
 }
 
-.article-stats {
+.infos-stats {
   display: flex;
   align-items: center;
   justify-content: right;
 }
 
 .article-body {
-  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   .heading {
     display: flex;
@@ -67,58 +92,12 @@
 
 .article-content {
   // padding-top: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
+  // padding-left: 30px;
+  // padding-right: 30px;
 
   p {
     font-size: 14px;
     opacity: .9;
-    margin: 0;
+    // margin: 0;
     }
-}
-
-.before-vote-card {
-  background-color: rgb(182, 180, 180);
-  margin: 30px;
-  padding: 15px;
-}
-
-.no-label {
-  display: inline-block;
-  justify-content: space-between;
-  align-items: center;
-
-  input[type="radio"] {
-    margin-left: 10px;
-    list-style: none;
-  }
-}
-
-
-// .radio-buttons {
-//   input[type="radio"] {
-//     display: inline-block;
-//     margin-right: 10px;
-//   }
-// }
-
-.vote-box {
-  display: flex;
-  justify-content: space-between;
-}
-
-.submit-vote {
-  display: flex;
-  align-items: flex-end;
-}
-
-.after-vote-display {
-  background-color: rgb(182, 180, 180);
-  margin: 30px;
-  padding: 15px;
-}
-
-.vote-value-cards {
-  display: flex;
-  justify-content: space-evenly;
 }

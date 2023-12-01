@@ -1,0 +1,46 @@
+.vote-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.before-vote-card {
+  background-color: rgb(182, 180, 180);
+  // margin: 30px;
+  padding: 15px;
+}
+
+.submit-vote {
+  display: flex;
+  align-items: flex-end;
+}
+
+.after-vote-display {
+  background-color: rgb(182, 180, 180);
+  // margin: 30px;
+  padding: 15px;
+}
+
+.vote-value-cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.no-label {
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+
+  input[type="radio"] {
+    margin-left: 10px;
+    list-style: none;
+  }
+}
+
+
+// .radio-buttons {
+//   input[type="radio"] {
+//     display: inline-block;
+//     margin-right: 10px;
+//   }
+// }
+
