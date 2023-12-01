@@ -17,11 +17,8 @@ class ArticlesController < ApplicationController
     @opposing_articles = @articles.sample(2)
     @new_vote = Vote.new
     @article.photo_url.present? ? @photo_url = @article.photo_url : @photo_url = "https://ichef.bbci.co.uk/news/976/cpsprodpb/0376/production/_131768800_84891ceead1dacb05d4125eb505e830de51c45cb.jpg"
-    @date = @article.date
-    @author = @article.author
-    @title = @article.title
-    @content = @article.content
-    @source = @article.source
+    @user_vote = @article.votes.where(user_id: current_user.id)
+    @new_comment = Comment.new
   end
 
   def new
