@@ -1,11 +1,12 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show article_leaning]
+  before_action :set_article, only: %i[show]
 
   def index
     @articles = Article.all
     @featured_articles = @articles.first(3)
     @opposing_articles = @articles.sample(3)
     @latest_articles = @articles.last(6)
+    # @article_leaning = article_leaning
   end
 
   def show
@@ -21,13 +22,6 @@ class ArticlesController < ApplicationController
     @title = @article.title
     @content = @article.content
     @source = @article.source
-  end
-
-  def article_leaning
-    # tb
-    @all_votes = @article.votes
-    @votes_sum = @all_votes.sum
-    @leaning = @votes_sum.fdiv(@all_votes.size).round(0)
   end
 
   def new

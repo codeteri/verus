@@ -10,4 +10,15 @@ class Article < ApplicationRecord
   validates :content, presence: true
   # length: { minimum: 1000 }
 
+  def leaning
+    if votes.any?
+      votes_sum = 0
+      votes.each do |vote|
+        votes_sum += vote.value
+      end
+      votes_sum.fdiv(votes.size).round(0)
+    else
+      0
+    end
+  end
 end
