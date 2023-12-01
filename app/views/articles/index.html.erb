@@ -6,17 +6,17 @@
         <div class="article-card">
           <% case article.leaning
           when 1 %>
-            <div class="vote-overlay" style="background-color: DarkBlue; color: white;">Far Left</div>
+            <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>
           <% when 2 %>
-            <div class="vote-overlay" style="background-color: Blue; color: white;">Left</div>
+            <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
           <% when 3 %>
-            <div class="vote-overlay" style="background-color: Grey;">Center</div>
+             <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
           <% when 4 %>
             <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
           <% when 5 %>
             <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>
           <% else %>
-            <div class="vote-overlay">Nil</div>
+            <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
           <% end %>
           <%= image_tag(article.photo_url) if article.photo_url? %>
           <h5><%= link_to article.title, article_path(article) %></h5>
@@ -32,17 +32,17 @@
           <div class="article-card">
             <% case article.leaning
             when 1 %>
-              <div class="vote-overlay" style="background-color: DarkBlue; color: white;">Far Left</div>
+              <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>
             <% when 2 %>
-              <div class="vote-overlay" style="background-color: Blue; color: white;">Left</div>
+              <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
             <% when 3 %>
-              <div class="vote-overlay" style="background-color: Grey;">Center</div>
+               <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
             <% when 4 %>
               <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
             <% when 5 %>
               <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>
             <% else %>
-              <div class="vote-overlay">Nil</div>
+              <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
             <% end %>
             <%= image_tag(article.photo_url) if article.photo_url? %>
             <h5><%= link_to article.title, article_path(article) %></h5>
@@ -57,17 +57,17 @@
           <div class="article-card">
             <% case article.leaning
             when 1 %>
-              <div class="vote-overlay" style="background-color: DarkBlue; color: white;">Far Left</div>
+              <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>
             <% when 2 %>
-              <div class="vote-overlay" style="background-color: Blue; color: white;">Left</div>
+              <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
             <% when 3 %>
-              <div class="vote-overlay" style="background-color: Grey;">Center</div>
+              <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
             <% when 4 %>
               <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
             <% when 5 %>
               <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>
             <% else %>
-              <div class="vote-overlay">Nil</div>
+              <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
             <% end %>
             <%= image_tag(article.photo_url) if article.photo_url? %>
             <h5><%= link_to article.title, article_path(article) %></h5>
