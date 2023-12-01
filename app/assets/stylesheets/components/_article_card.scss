@@ -1,28 +1,41 @@
 .article-card {
-  height: 250px;
-  width: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  width: 330px;
   position: relative;
-  border-radius: 1px;
-  border-style: solid;
-  border-color: red;
+  // border-radius: 1px;
+  // border-style: solid;
+  // border-color: red;
+
   img {
-    height: auto;
-    width: 293px;
+    height: 170px;
+    width: auto;
   }
 }
 
 
 .article-card-text {
+  padding-left: 10px;
+  padding-right: 10px;
   position: absolute;
   bottom: 2px;
   left: 2px;
+  color: white;
+
+  h5 {
+    font-size: 16px;
+    font-weight: bolder;
+  }
 
   a {
-    color: black;
+    color: white;
   }
 
   a:hover {
     font-weight: bolder;
   }
 }
-

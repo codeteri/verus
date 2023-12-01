@@ -1,7 +1,7 @@
 .navbar {
   height: 50px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-top: 15px;
   padding-bottom: 10px;
   display: flex;
@@ -16,6 +16,10 @@
   background-color: white;
   padding-left: 30px;
   padding-right: 30px;
+  i {
+    color: rgb(38, 38, 53);
+    margin-right: 20px;
+  }
 }
 
 .navbar-left {
@@ -31,18 +35,4 @@
 .logo {
   position: center;
   max-width: 220px;
-}
-
-
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
 }

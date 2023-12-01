@@ -14,11 +14,8 @@ class ArticlesController < ApplicationController
     @article.comments.any? ? @article_comments = @article.comments.size : @article_comments = 0
     @related_articles = @articles.sample(2)
     @opposing_articles = @articles.sample(2)
-
-    # adding votes needs work:
     @new_vote = Vote.new
-
-    # refactoring to un-n+1 ?? :
+    @article.photo_url.present? ? @photo_url = @article.photo_url : @photo_url = "https://ichef.bbci.co.uk/news/976/cpsprodpb/0376/production/_131768800_84891ceead1dacb05d4125eb505e830de51c45cb.jpg"
     @date = @article.date
     @author = @article.author
     @title = @article.title
