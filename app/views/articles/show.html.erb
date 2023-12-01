@@ -1,7 +1,7 @@
 <div class="article-show">
   <div class="article-header">
     <div class="article-title"><h3><%= @article.title %></h3></div>
-    <div class="cover-image" style="background-image: url(https://ichef.bbci.co.uk/news/976/cpsprodpb/0376/production/_131768800_84891ceead1dacb05d4125eb505e830de51c45cb.jpg.webp)"></div>
+    <div class="cover-image" style="background-image: url( <%= @photo_url %> )"></div>
     <div class="article-infos">
       <div class="col-md-6 infos-left">
         <h5><%= @author %></h5>
@@ -21,7 +21,6 @@
   <div class="row article-body">
     <div class="col-md-9 article-content">
       <div class="article-content">
-        <p><%= @content %></p>
         <p><%= @content %></p>
       </div>
       <div class="vote-card">
@@ -65,6 +64,5 @@
         <% end %>
       </div>
     </div>
-
   </div>
 </div>
