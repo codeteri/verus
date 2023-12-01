@@ -7,17 +7,19 @@
 
 .featured-articles {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: relative;
   background-color: white;
   padding: 15px;
+  border-radius: 6px;
 }
 
 .index-body {
   margin: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-radius: 6px;
 }
 
 .opposing-articles {

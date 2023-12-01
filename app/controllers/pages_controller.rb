@@ -9,7 +9,7 @@ class PagesController < ApplicationController
         if request.headers["Turbo-Frame"]
           render partial: "pages/#{@view}", layout: false
         else
-          render :dashboard
+          render :show
         end
       end
     end
