@@ -4,6 +4,12 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+.article-head {
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+
 .article-title {
   display: flex;
   padding-top: 10px;
@@ -28,6 +34,8 @@
 }
 
 .article-infos {
+  padding-left: 30px;
+  padding-right: 30px;
   padding: 16px;
   display: flex;
   justify-content: space-between;
@@ -69,9 +77,8 @@
     }
 }
 
-.vote-card {
+.before-vote-card {
   background-color: rgb(182, 180, 180);
-  height: 120px;
   margin: 30px;
   padding: 15px;
 }
@@ -103,4 +110,15 @@
 .submit-vote {
   display: flex;
   align-items: flex-end;
+}
+
+.after-vote-display {
+  background-color: rgb(182, 180, 180);
+  margin: 30px;
+  padding: 15px;
+}
+
+.vote-value-cards {
+  display: flex;
+  justify-content: space-evenly;
 }

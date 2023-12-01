@@ -1,14 +1,14 @@
 <div class="article-show">
-  <div class="article-header">
+  <div class="article-head">
     <div class="article-title"><h3><%= @article.title %></h3></div>
     <div class="cover-image" style="background-image: url( <%= @photo_url %> )"></div>
     <div class="article-infos">
       <div class="col-md-6 infos-left">
-        <h5><%= @author %></h5>
-        <p><%= @source %></p>
+        <h5><%= @article.author %></h5>
+        <p><%= @article.source %></p>
       </div>
       <div class="col-md-3 infos-mid">
-        <p><%= @date %></p>
+        <p><%= @article.date %></p>
       </div>
       <div class="col-md-3 article-stats">
         <i class="fa-regular fa-hand-pointer"> </i>
@@ -21,29 +21,68 @@
   <div class="row article-body">
     <div class="col-md-9 article-content">
       <div class="article-content " style="white-space: pre-line;">
-        <p><%= @content %></p>
+        <p><%= @article.content %></p>
       </div>
-      <div class="vote-card">
-        <h5>We value your perspective!</h5>
-        <p>How do you feel this article leaning politically?</p>
-          <%= simple_form_for(@new_vote, url: article_votes_path(@article), method: :post) do |form| %>
-          <div class="vote-box">
-            <div class="radio-buttons">
-              <%= form.collection_radio_buttons :value, [[1, 'Far Left'], [2, 'Left'], [3, 'Neutral'], [4, 'Right'], [5, 'Far Right']], :first, :last, item_wrapper_tag: :span, item_wrapper_class: 'no-label' %>
+      <% if @user_vote.present? %>
+        <div class="after-vote-display">
+          <h5>Thank you for voting!</h5>
+          <p> <%= @article.votes.count %> users have now added their vote to this article </p>
+          <br>
+          <div class="vote-value-cards">
+            <div class="show-user-vote">
+              <p>Your vote: </p>
+              <%= @article.votes.last.value %>
             </div>
-            <div class="submit-vote">
-              <%= form.submit 'Submit Vote' %>
+            <div class="show-leaning">
+              <p>Voter Average: </p>
+              <%= @article.leaning %>
+            </div>
+          </div>
+        </div>
+      <div class="comment-section">
+        <h5>Join the conversation</h5>
+        <br>
+        <div class="add-comment">
+          <%= simple_form_for(@new_comment, url: article_votes_path(@article), method: :post ) do |form| %>
+            <%= form.input :content, label: false, placeholder: 'Add a comment...' %>
+            <%= form.submit 'Submit Comment' %>
+          <% end %>
+        </div>
+        <div class="comments">
+          <% if @article.comments.any? %>
+            <%= @article.comments.each do |comment| %>
+              <div class="show-comment">
+                <p><%= comment.user.username %> </p>
+                <p><%= comment.content %> </p>
+              </div>
+            <% end  %>
+          <% end %>
+        </div>
+      </div>
+      <% else %>
+        <div class="before-vote-card">
+          <h5>We value your perspective!</h5>
+          <p>How do you feel this article leaning politically?</p>
+          <br>
+          <%= simple_form_for(@new_vote, url: article_votes_path(@article), method: :post) do |form| %>
+            <div class="vote-box">
+              <div class="radio-buttons">
+                <%= form.collection_radio_buttons :value, [[1, 'Far Left'], [2, 'Left'], [3, 'Neutral'], [4, 'Right'], [5, 'Far Right']], :first, :last, item_wrapper_tag: :span, item_wrapper_class: 'no-label' %>
+              </div>
+              <div class="submit-vote">
+                <%= form.submit 'Submit Vote' %>
+              </div>
             </div>
           <% end %>
-          </div>
+        </div>
+      <% end %>
       </div>
     </div>
     <div class="col-md-3 article-sidebar">
       <div class="heading"><h5>related articles</h5></div>
       <div class="related">
         <% @related_articles.each do |article| %>
-          <div class="article-card-sm">
-            <!--background image will go here-->
+            <div class="article-card-sm" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%= article.photo_url if article.photo_url? %> )" >
             <div class="article-card-text">
               <h5><%= link_to article.title, article_path(article) %></h5>
               <p><%= article.content[0,20] %>...</p>
@@ -54,8 +93,7 @@
       <div class="heading"><h5>opposing views</h5></div>
       <div class="related">
         <% @opposing_articles.each do |article| %>
-          <div class="article-card-sm">
-            <!--background image will go here-->
+            <div class="article-card-sm" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%= article.photo_url if article.photo_url? %> )" >
             <div class="article-card-text">
               <h5><%= link_to article.title, article_path(article) %></h5>
               <p><%= article.content[0,20] %>...</p>
