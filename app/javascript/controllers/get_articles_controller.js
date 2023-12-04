@@ -1,23 +1,40 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ['list']
+  static targets = ['list', 'image']
   static values = {
     apiKey: String,
   }
 
   connect() {
-    console.log("Hello from the index Page")
+    this.fire();
   }
-  
-  fire(event) {
-    event.preventDefault();
-    
-    const keyword = "South Africa";
+
+  changeUrl(event) {
+    event.target.src = "https://images.unsplash.com/photo-1682687982502-1529b3b33f85?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }
+
+  fire() {
+    const keywords = [
+      "InternationalRelations",
+      "Elections",
+      "GovernmentPolicies",
+      "GlobalAffairs",
+      "GovernmentPolicies",
+    ];
+
     const apiKey = this.apiKeyValue;
-    
-    const url = `https://eventregistry.org/api/v1/article/getArticles?keyword=${encodeURIComponent(keyword)}&apiKey=${apiKey}&lang=eng`;
-    
+
+    // Construct the query object with the OR condition and lang parameter
+    const query = {
+      $query: {
+        $or: keywords.map(keyword => ({ keyword })),
+        $and: [{ lang: "eng" }]
+      }
+    };
+
+    const url = `https://eventregistry.org/api/v1/article/getArticles?query=${encodeURIComponent(JSON.stringify(query))}&apiKey=${apiKey}&includeArticleAuthors=true&includeArticleImage=true`;
+
     fetch(url, {
       method: "GET",
       headers: {
@@ -26,14 +43,17 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
-      data.articles.results.forEach((result) => this.#send(result))
+      data.articles.results.forEach((result) => {
+        if (result.image) {
+          this.#send(result);
+        }
+      });
     })
     .catch(error => console.error("Error:", error));
   }
-  
+
   #send(article) {
-    const csrfToken = document.querySelector("[name='csrf-token']").content
+    const csrfToken = document.querySelector("[name='csrf-token']").content;
     fetch("/articles", {
       method: "POST",
       headers: {
@@ -49,13 +69,13 @@ export default class extends Controller {
         "source": article.source.title
       })
     })
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data)
-        if (data.inserted_item) {
-          // beforeend could also be dynamic with Stimulus values
-          this.listTarget.insertAdjacentHTML("beforeend", data.inserted_item)
-        }
-      })
+    .then(response => response.json())
+    .then((data) => {
+      // console.log(data);
+      if (data.inserted_item) {
+        // beforeend could also be dynamic with Stimulus values
+        this.listTarget.insertAdjacentHTML("beforeend", data.inserted_item);
+      }
+    });
   }
 }
