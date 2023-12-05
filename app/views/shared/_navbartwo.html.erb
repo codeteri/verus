@@ -6,7 +6,8 @@
       <% end %>
       <i class="fa-solid fa-magnifying-glass"></i>
     </div>
-    <%= image_tag('veruslogo.png', alt: 'Logo', class: 'logo') %>
+
+    <%= link_to(root_path) { image_tag('veruslogo.png', alt: 'Logo', class: 'logo') } %>
     <div class="nav-right">
       <div class="dropdown">
         <a class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">

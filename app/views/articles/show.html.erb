@@ -86,7 +86,7 @@
       <div class="related">
         <% @related_articles.each do |article| %>
           <div class="article-card-sm" >
-            <%= image_tag(article.photo_url) if article.photo_url? %>
+            <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
           </div>
           <div class="article-card-text">
             <h5><%= link_to article.title, article_path(article) %></h5>
@@ -98,7 +98,7 @@
       <div class="related">
         <% @opposing_articles.each do |article| %>
         <div class="article-card-sm">
-          <%= image_tag(article.photo_url) if article.photo_url? %>
+          <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
           <!--<h5><%#= link_to article.title, article_path(article) %></h5>-->
             <!--<div class="article-card-sm" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%#= article.photo_url if article.photo_url? %> )" >
             <div class="article-card-text">

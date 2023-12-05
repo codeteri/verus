@@ -10,7 +10,7 @@
           <% when 2 %>
             <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
           <% when 3 %>
-             <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
+            <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
           <% when 4 %>
             <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
           <% when 5 %>
@@ -18,7 +18,7 @@
           <% else %>
             <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
           <% end %>
-          <%= image_tag(article.photo_url) if article.photo_url? %>
+          <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
           <h5><%= link_to article.title, article_path(article) %></h5>
         </div>
       <% end %>
@@ -36,7 +36,7 @@
             <% when 2 %>
               <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
             <% when 3 %>
-               <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
+              <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
             <% when 4 %>
               <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
             <% when 5 %>
@@ -69,12 +69,11 @@
             <% else %>
               <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
             <% end %>
-            <%= image_tag(article.photo_url) if article.photo_url? %>
+            <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
             <h5><%= link_to article.title, article_path(article) %></h5>
           </div>
         <% end %>
       </div>
     </div>
   </div>
-  <button data-action="click->get-articles#fire">Fire</button>
 </div>
