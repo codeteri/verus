@@ -12,10 +12,10 @@
           <p><%= @article.date %></p>
         </div>
         <div class="infos-stats">
-        <i class="fa-regular fa-hand-pointer"> </i>
-        <p><%= @article_votes %></p>
+        <i class="fa-solid fa-chart-simple" style="color: #3c485d;"></i>
+        <p>Votes: <%= @article_votes %></p>
         <i class="fa-regular fa-message"> </i>
-        <p><%= @article_comments %></p>
+        <p>Comments: <%= @article_comments %></p>
       </div>
       </div>
     </div>
@@ -27,15 +27,14 @@
         <% if @user_vote.present? %>
           <div class="after-vote-display">
             <h5>Thank you for voting!</h5>
-            <p> <%= @article.votes.count %> users have now added their vote to this article </p>
-            <br>
+            <p>    <%= @article.votes.count %> users have now added their vote to this article </p>
             <div class="vote-value-cards">
               <div class="show-user-vote">
-                <p>Your vote: </p>
+                <p class="bold-text">Your vote: </p>
                 <%= @article.votes.last.value %>
               </div>
               <div class="show-leaning">
-                <p>Voter Average: </p>
+                <p class="bold-text">Voter Average: </p>
                 <%= @article.leaning %>
               </div>
             </div>
@@ -44,21 +43,29 @@
           <h5>Join the conversation</h5>
           <br>
           <div class="add-comment">
-            <%= simple_form_for(@new_comment, url: article_votes_path(@article), method: :post ) do |form| %>
+            <%= simple_form_for [@article, @new_comment] do |form| %>
               <%= form.input :content, label: false, placeholder: 'Add a comment...' %>
               <%= form.submit 'Submit Comment' %>
             <% end %>
           </div>
-          <div class="comments">
-            <% if @article.comments.any? %>
-              <%= @article.comments.each do |comment| %>
-                <div class="show-comment">
-                  <p><%= comment.user.username %> </p>
-                  <p><%= comment.content %> </p>
+          <br>
+          <% if @article.comments.any? %>
+          <h5>Comments</h5>
+            <div class="comments">
+              <% @article.comments.each do |comment| %>
+                <div class="row show-comment">
+                  <div class="col comment-content">
+                    <p class="bold-text"><%= comment.user.username %>:</p><p><%= comment.content %> </p><p class="timestamp"><%= comment.created_at %></p>
+                  </div>
+                  <div class="col comment-likes">
+<!--
+                    <i class="fa-regular fa-thumbs-up" > <%#= comment.likes.size %></i>
+                    <i class="fa-regular fa-thumbs-down"></i> <%#= comment.dislikes.size %></i>-->
+                  </div>
                 </div>
               <% end  %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
         <% else %>
           <div class="before-vote-card">

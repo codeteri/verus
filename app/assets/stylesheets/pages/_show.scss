@@ -76,12 +76,17 @@
 .infos-stats {
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: space-between;
+  i {
+  padding-right: 15px;
+  padding-left: 10px;
+  }
 }
 
 .article-body {
   padding-left: 30px;
   padding-right: 30px;
+  padding-bottom: 30px;
 
   .heading {
     display: flex;
