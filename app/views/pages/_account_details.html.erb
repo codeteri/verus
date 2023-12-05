@@ -1,3 +1,13 @@
-<turbo-frame id="main-content-frame">
-  <h2>DETAILS BRO</h2>
+<turbo-frame id="main-content-frame" class="main-content">
+  <h3 class="title">Your Account</h3>
+  <div class="content">
+    <%= form_for(current_user, as: :user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+      <div class="form-group">
+        Account Name: <%= f.text_field :username, class: 'form-control' %><br>
+        Email: <%= f.email_field :email, class: 'form-control' %><br>
+        Password: <%= f.password_field :password, class: 'form-control' %><br>
+        <%= f.submit "Update", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
 </turbo-frame>
