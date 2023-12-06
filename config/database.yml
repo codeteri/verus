@@ -82,3 +82,4 @@ production:
   database: verus_production
   username: verus
   password: <%= ENV["VERUS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['HEROKU_POSTGRESQL_BROWN_URL'] %>
