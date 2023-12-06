@@ -5,8 +5,11 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @featured_articles = @articles.first(3)
     @opposing_articles = @articles.sample(3)
-    @latest_articles = @articles.last(6)
-    # @article_leaning = article_leaning
+
+    sort_option = params[:sort]
+    @latest_articles = @articles.order(created_at: :desc).limit(6).to_a
+    @latest_articles.sort_by!(&:leaning).reverse! if sort_option == 'right'
+    @latest_articles.sort_by!(&:leaning) if sort_option == 'left'
   end
 
   def show
