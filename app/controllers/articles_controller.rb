@@ -42,6 +42,19 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search
+    if params[:query].present?
+      @results = Article.search_by_title_and_content(params[:query])
+    else
+      @results = Article.none
+    end
+  
+    respond_to do |format|
+      format.html { render 'search' } # Add this line for HTML format
+      format.json { render partial: 'search_results', locals: { results: @results } }
+    end
+  end
+
   private
 
   def set_article

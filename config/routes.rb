@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :articles, except: %i[edit update destroy] do
+    collection do
+      get 'search', to: 'articles#search'
+    end
+  
     resources :bookmarks, only: %i[create destroy]
     resources :comments, only: %i[create edit update destroy]
     resources :votes, only: %i[create]
