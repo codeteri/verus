@@ -7,7 +7,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.fire();
+    // this.fire();
   }
 
   changeUrl(event) {
