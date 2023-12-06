@@ -1,3 +1,15 @@
 <turbo-frame id="main-content-frame">
-  <h3>Bookmarked Articles</h3>
+ <div class="bookmarked-heading"><h3>Bookmarked Articles</h3></div>
+  <div class="bookmarked">
+    <% @bookmarked_articles.each do |article| %>
+      <div class="article-card">
+        <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
+        <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
+        <h5><%= link_to article.title, article_path(article) %></h5>
+        <div class="bookmark-index">
+          <i class="fa-solid fa-bookmark"></i>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </turbo-frame>

@@ -36,8 +36,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_075132) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.integer "likes"
-    t.integer "dislikes"
+    t.integer "likes", default: 0
+    t.integer "dislikes", default: 0
     t.bigint "user_id", null: false
     t.bigint "article_id", null: false
     t.datetime "created_at", null: false

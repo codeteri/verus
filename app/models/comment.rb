@@ -6,12 +6,12 @@ class Comment < ApplicationRecord
   # validates :article_id, presence: true
 
   def add_like
-    @likes = self.likes
-    @likes += 1
+    self.likes += 1
+    save
   end
 
   def add_dislike
-    @dislikes = self.dislikes
-    @dislikes += 1
+    self.dislikes += 1
+    save
   end
 end

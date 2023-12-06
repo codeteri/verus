@@ -3,9 +3,10 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
-    @featured_articles = @articles.first(3)
+    @featured_articles = @articles.sample(3)
     @opposing_articles = @articles.sample(3)
-    @latest_articles = @articles.last(6)
+    @latest_articles = @articles.sample(6)
+    @new_bookmark = Bookmark.new
     # @article_leaning = article_leaning
   end
 
@@ -19,6 +20,7 @@ class ArticlesController < ApplicationController
     @article.photo_url.present? ? @photo_url = @article.photo_url : @photo_url = "https://ichef.bbci.co.uk/news/976/cpsprodpb/0376/production/_131768800_84891ceead1dacb05d4125eb505e830de51c45cb.jpg"
     @user_vote = @article.votes.where(user_id: current_user.id)
     @new_comment = Comment.new
+    @new_bookmark = Bookmark.new
   end
 
   def new
