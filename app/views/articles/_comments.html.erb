@@ -9,14 +9,19 @@
   </div>
   <br>
   <% if article.comments.any? %>
-  <h5>Comments</h5>
+    <h5>Comments</h5>
     <div class="comments" id="anchor" >
       <% article.comments.reverse_each do |comment| %>
-        <div class="row show-comment">
-          <div class="col comment-content">
-            <p class="bold-text"><%= comment.user.username %>:</p><p><%= comment.content %> </p><p class="timestamp"><%= comment.created_at %></p>
+        <div class="show-comment">
+          <div class="comment-content">
+            <div class="username">
+              <%= image_tag('user.png', alt: 'User avatar', class: 'user-avatar') %>
+              <p class="bold-text"><%= comment.user.username %>:</p>
+            </div>
+            <p><%= comment.content %> </p>
+            <p class="timestamp"><%= comment.created_at %></p>
           </div>
-          <div class="col comment-likes">
+          <div class="comment-likes">
             <%= link_to like_article_comment_path(article, comment), data: { turbo_method: :put } do %>
               <i class="fa-regular fa-thumbs-up" ></i>
             <% end %>
@@ -27,7 +32,8 @@
             <p> <%= comment.dislikes %></p>
           </div>
         </div>
-      <% end  %>
+      <% end %>
     </div>
   <% end %>
 </div>
+
