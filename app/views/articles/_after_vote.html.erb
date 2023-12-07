@@ -1,14 +1,23 @@
 <div class="after-vote-display">
   <h5>Thank you for voting!</h5>
-  <p> <%= article.votes.count %> users have now added their vote to this article </p>
-  <div class="vote-value-cards">
-    <div class="show-user-vote">
-      <p class="bold-text">Your vote: </p>
-      <%= article.votes.last.value %>
-    </div>
-    <div class="show-leaning">
-      <p class="bold-text">Voter Average: </p>
-      <%= article.leaning %>
+  <div class="vote-distribution">
+    <h3>Voting Distribution</h3>
+    <div class="progress">
+      <div class="progress-bar progress-bar-far_left" style="width: <%= @article.vote_distribution_percentage(1) %>%;"></div>
+      <div class="progress-bar progress-bar-left" style="width: <%= @article.vote_distribution_percentage(2) %>%;"></div>
+      <div class="progress-bar progress-bar-neutral" style="width: <%= @article.vote_distribution_percentage(3) %>%;"></div>
+      <div class="progress-bar progress-bar-right" style="width: <%= @article.vote_distribution_percentage(4) %>%;"></div>
+      <div class="progress-bar progress-bar-far_right" style="width: <%= @article.vote_distribution_percentage(5) %>%;"></div>
     </div>
   </div>
 </div>
+
+  <!--<div class="vote-value-cards">
+    <div class="show-user-vote">
+      <p class="bold-text">Your vote: </p>
+      <%#= article.votes.last.value %>-->
+<!--    </div>
+    <div class="show-leaning">
+      <p class="bold-text">Voter Average: </p>
+      <%#= article.leaning %>-->
+<!--    </div>-->
