@@ -2,13 +2,12 @@ class PagesController < ApplicationController
   before_action :authenticate_user!
 
   def dashboard
-    @view = params[:view] || 'default'
+    @view = params[:view] || 'bookmarked'
     bookmarked_articles
     respond_to do |format|
       format.html do
         if request.headers["Turbo-Frame"]
           render partial: "pages/#{@view}", layout: false
-          @bookmarked_articles = Article.where(bookmarks: { user_id: current_user.id })
         else
           render :show
         end
