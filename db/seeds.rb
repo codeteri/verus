@@ -32,11 +32,3 @@ puts "adding comments..."
     article: articles.sample
   )
 end
-
-# puts "creating users..."
-# alice = User.create!(username: "Alice", email: "alice@example.com", password: "12345678")
-# bob = User.create!(username: "Bob", email: "bob@example.com", password: "12345678")
-# charlie = User.create!(username: "Charlie", email: "charlie@example.com", password: "12345678")
-# ramon = User.create!(username: "Ramon", email: "ramon@example.com", password: "12345678")
-
-# puts "Users created"
