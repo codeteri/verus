@@ -1,8 +1,8 @@
 <!-- app/views/users/show.html.erb -->
 <div class="dashboard" data-controller="content-loader">
   <div class="sidebar">
+    <%= link_to 'Bookmarked', dashboard_path(view: 'bookmarked'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' }, class: (@view == 'bookmarked' ? 'active' : '') %>
     <%= link_to 'Commented Articles', dashboard_path(view: 'chats'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
-    <%= link_to 'Bookmarked', dashboard_path(view: 'bookmarked'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
     <%= link_to 'Account Details', dashboard_path(view: 'account_details'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
 
     <div class="consensus-score">
