@@ -34,6 +34,14 @@ class Article < ApplicationRecord
     end
   end
 
+  def vote_distribution_percentage(value)
+    total_votes = votes.count
+    return 0 if total_votes.zero?
+
+    value_votes = votes.where(value: value).count
+    (value_votes.to_f / total_votes) * 100
+  end
+
   def leaning_string
     case leaning
     when 1
