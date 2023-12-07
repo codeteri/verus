@@ -144,7 +144,7 @@ puts "#{Comment.count} Comments created"
 
 puts "creating votes"
 
-articles = Article.all.sample(3)
+articles = Article.all
 
 users.each do |user|
   articles.each do |article|
@@ -160,4 +160,4 @@ users.each do |user|
   end
 end
 
-puts "votes created"
+puts "#{Vote.count} votes created"
