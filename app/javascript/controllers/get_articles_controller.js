@@ -8,6 +8,7 @@ export default class extends Controller {
 
   connect() {
     // this.fire();
+    console.log("get articles controller connected")
   }
 
   changeUrl(event) {
