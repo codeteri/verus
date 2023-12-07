@@ -1,0 +1,39 @@
+<div class="comment-section">
+  <h5>Join the conversation</h5>
+  <br>
+  <div class="add-comment">
+    <%= simple_form_for [article, new_comment], remote: true do |form| %>
+      <%= form.input :content, label: false, placeholder: 'Add a comment...' %>
+      <%= form.submit 'Submit Comment' %>
+    <% end %>
+  </div>
+  <br>
+  <% if article.comments.any? %>
+    <h5>Comments</h5>
+    <div class="comments" id="anchor" >
+      <% article.comments.reverse_each do |comment| %>
+        <div class="show-comment">
+          <div class="comment-content">
+            <div class="username">
+              <%= image_tag('user.png', alt: 'User avatar', class: 'user-avatar') %>
+              <p class="bold-text"><%= comment.user.username %>:</p>
+            </div>
+            <p><%= comment.content %> </p>
+            <p class="timestamp"><%= comment.created_at %></p>
+          </div>
+          <div class="comment-likes">
+            <%= link_to like_article_comment_path(article, comment), data: { turbo_method: :put } do %>
+              <i class="fa-regular fa-thumbs-up" ></i>
+            <% end %>
+            <p><%= comment.likes %></p>
+            <%= link_to dislike_article_comment_path(article, comment), data: { turbo_method: :put } do %>
+              <i class="fa-regular fa-thumbs-down"></i>
+            <% end %>
+            <p> <%= comment.dislikes %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

@@ -1,8 +1,9 @@
 // Specific CSS for your home-page
 
 .featured {
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 6px;
 }
 
 .featured-articles {
@@ -11,7 +12,7 @@
   align-items: center;
   position: relative;
   background-color: white;
-  padding: 15px;
+  padding: 20px;
   border-radius: 6px;
 }
 
@@ -35,6 +36,7 @@
 .opposing {
   // margin: 20px;
   padding: 10px;
+  grid-gap: 1rem;
 }
 
 .latest {

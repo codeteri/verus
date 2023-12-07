@@ -1,17 +1,20 @@
 <!--<div class="container my-5" data-controller="get-articles" data-get-articles-api-key-value="<%#= ENV['NEWS_API_KEY'] %>">-->
   <div class="featured">
-    <div class="heading">
+    <div class="heading-featured">
         <h3>Featured Articles</h3>
     </div>
     <div class="featured-articles">
       <% @featured_articles.each do |article| %>
         <div class="article-card">
           <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
-          <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
-          <h5><%= link_to article.title, article_path(article) %></h5>
-          <div class="bookmark-index" id="bookmark_index">
+            <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
+            <h5><%= link_to article.title.truncate(85), article_path(article) %></h5>
+            <div class="article-source">
+              <p>Source: <%= article.source %></p>
+            </div>
+            <div class="bookmark-index" id="bookmark_index">
             <% unless article.bookmarked?(current_user) %>
-            <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
+              <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
                 <i class="fa-regular fa-bookmark"></i>
               <% end %>
             <% else  %>
@@ -24,13 +27,16 @@
   </div>
   <div class="row index-body">
     <div class="opposing-articles">
-      <div class="heading"><h3>The Opposite View</h3></div>
+      <div class="heading-opposing"><h3>The Opposite View</h3></div>
       <div class="opposing">
         <% @opposing_articles.each do |article| %>
-          <div class="article-card">
+          <div class="article-card-opposing">
             <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
             <%= image_tag(article.photo_url) if article.photo_url? %>
-            <h5><%= link_to article.title, article_path(article) %></h5>
+            <h5><%= link_to article.title.truncate(85), article_path(article) %></h5>
+            <div class="article-source">
+              <p>Source: <%= article.source %></p>
+            </div>
             <div class="bookmark-index" id="bookmark_index">
             <% unless article.bookmarked?(current_user) %>
             <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
@@ -47,7 +53,7 @@
 
     <div class="latest-articles" data-get-articles-target="list">
   <div class="heading-with-sort">
-    <div class="heading"><h3>Latest</h3></div>
+    <div class="heading-latest"><h3>Latest</h3></div>
     <div class="sort-by">
       <%= form_tag('', method: :get) do %>
         <%= select_tag :sort, options_for_select([['Furthest Right', 'right'], ['Furthest Left', 'left']], selected: params[:sort]), onchange: 'this.form.submit();' %>
@@ -59,7 +65,10 @@
           <div class="article-card">
               <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
             <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
-            <h5><%= link_to article.title, article_path(article) %></h5>
+            <h5><%= link_to article.title.truncate(80), article_path(article) %></h5>
+            <div class="article-source">
+              <p>Source: <%= article.source %></p>
+            </div>
             <div class="bookmark-index" id="bookmark_index">
             <% unless article.bookmarked?(current_user) %>
             <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
@@ -70,7 +79,6 @@
             <% end %>
           </div>
           </div>
-
         <% end %>
       </div>
     </div>
