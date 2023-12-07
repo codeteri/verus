@@ -1,4 +1,5 @@
 <% @results.each do |result| %>
+  <%= result.photo_url %>
   <h3><%= link_to result.title, article_path(result) %></h3>
   <p><%= result.content[0,200] %>...</p>
   <br>

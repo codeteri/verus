@@ -24,7 +24,7 @@ export default class extends Controller {
       "GovernmentPolicies",
     ];
 
-    const apiKey = this.apiKeyValue;
+    api_key = ENV['API_KEY']
 
     // Construct the query object with the OR condition and lang parameter
     const query = {
