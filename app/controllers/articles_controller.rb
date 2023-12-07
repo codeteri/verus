@@ -49,10 +49,11 @@ class ArticlesController < ApplicationController
   def search
     if params[:query].present?
       @results = Article.search_by_title_and_content(params[:query])
+      # raise
     else
       @results = Article.none
     end
-  
+
     respond_to do |format|
       format.html { render 'search' } # Add this line for HTML format
       format.json { render partial: 'search_results', locals: { results: @results } }

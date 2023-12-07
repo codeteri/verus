@@ -36,7 +36,7 @@
         <% if @user_vote.present? %>
           <div class="after-vote-display">
             <h5>Thank you for voting!</h5>
-            <p>    <%= @article.votes.count %> users have now added their vote to this article </p>
+            <p> <%= @article.votes.count %> users have now added their vote to this article </p>
             <div class="vote-value-cards">
               <div class="show-user-vote">
                 <p class="bold-text">Your vote: </p>
@@ -48,11 +48,14 @@
               </div>
             </div>
           </div>
-        <div class="comment-section">
+        <div class="comment-section"  data-controller="prevent-reload">
           <h5>Join the conversation</h5>
           <br>
           <div class="add-comment">
-            <%= simple_form_for [@article, @new_comment] do |form| %>
+            <%= simple_form_for [@article, @new_comment], data: {
+                prevent_reload_target: "form",
+                action: "submit->prevent-reload#stayOnPage"
+                } do |form| %>
               <%= form.input :content, label: false, placeholder: 'Add a comment...' %>
               <%= form.submit 'Submit Comment' %>
             <% end %>
@@ -60,7 +63,7 @@
           <br>
           <% if @article.comments.any? %>
           <h5>Comments</h5>
-            <div class="comments">
+            <div class="comments" data>
               <% @article.comments.each do |comment| %>
                 <div class="row show-comment">
                   <div class="col comment-content">

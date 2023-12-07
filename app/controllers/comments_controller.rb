@@ -6,11 +6,20 @@ class CommentsController < ApplicationController
     @new_comment = Comment.new(comment_params)
     @new_comment.article = @article
     @new_comment.user = current_user
-    if @new_comment.save
-      redirect_to article_path(@article)
-    else
-      render 'new'
+    respond_to do |format|
+      if @new_comment.save
+        format.html { redirect_to article_path(@article) }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      else
+        format.html { render "comments/new", status: :unprocessable_entity }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      end
     end
+    # if @new_comment.save
+    #   redirect_to article_path(@article)
+    # else
+    #   render 'new'
+    # end
   end
 
   # def update
