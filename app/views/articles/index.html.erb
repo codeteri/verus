@@ -6,22 +6,18 @@
     <div class="featured-articles">
       <% @featured_articles.each do |article| %>
         <div class="article-card">
-          <% case article.leaning
-          when 1 %>
-            <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>
-          <% when 2 %>
-            <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
-          <% when 3 %>
-            <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
-          <% when 4 %>
-            <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
-          <% when 5 %>
-            <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>
-          <% else %>
-            <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
-          <% end %>
+          <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
           <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
           <h5><%= link_to article.title, article_path(article) %></h5>
+          <div class="bookmark-index" id="bookmark_index">
+            <% unless article.bookmarked?(current_user) %>
+            <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% else  %>
+              <i class="fa-solid fa-bookmark"></i>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -32,22 +28,18 @@
       <div class="opposing">
         <% @opposing_articles.each do |article| %>
           <div class="article-card">
-            <% case article.leaning
-            when 1 %>
-              <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>
-            <% when 2 %>
-              <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
-            <% when 3 %>
-              <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
-            <% when 4 %>
-              <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
-            <% when 5 %>
-              <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>
-            <% else %>
-              <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
-            <% end %>
+            <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
             <%= image_tag(article.photo_url) if article.photo_url? %>
             <h5><%= link_to article.title, article_path(article) %></h5>
+            <div class="bookmark-index" id="bookmark_index">
+            <% unless article.bookmarked?(current_user) %>
+            <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% else  %>
+              <i class="fa-solid fa-bookmark"></i>
+            <% end %>
+          </div>
           </div>
         <% end %>
       </div>
@@ -65,22 +57,18 @@
   <div class="latest">
     <% @latest_articles.each do |article| %>
           <div class="article-card">
-            <% case article.leaning
-            when 1 %>
-              <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>
-            <% when 2 %>
-              <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>
-            <% when 3 %>
-              <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>
-            <% when 4 %>
-              <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>
-            <% when 5 %>
-              <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>
-            <% else %>
-              <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>
-            <% end %>
+              <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
             <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
             <h5><%= link_to article.title, article_path(article) %></h5>
+            <div class="bookmark-index" id="bookmark_index">
+            <% unless article.bookmarked?(current_user) %>
+            <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% else  %>
+              <i class="fa-solid fa-bookmark"></i>
+            <% end %>
+          </div>
           </div>
 
         <% end %>
@@ -90,3 +78,17 @@
   <!--<button data-action="click->get-articles#fire"></button>-->
   <button data-action="click->get-articles#fire">Fire</button>
 </div>
+            <%# case article.leaning
+              when 1 %>
+<!--              <div class="vote-overlay" style="background-color: Blue; color: white;">Far Left</div>-->
+            <%# when 2 %>
+<!--              <div class="vote-overlay" style="background-color: LightBlue; color: blue;">Left</div>-->
+            <%# when 3 %>
+<!--              <div class="vote-overlay" style="background-color: Grey; color: white;">Center</div>-->
+            <%# when 4 %>
+<!--              <div class="vote-overlay" style="background-color: LightCoral; color: white;">Right</div>-->
+            <%# when 5 %>
+<!--              <div class="vote-overlay" style="background-color: Red; color: white;">Far Right</div>-->
+            <%# else %>
+<!--              <div class="vote-overlay" style="background-color: White; color: Grey;">No Votes</div>-->
+            <%# end %>
