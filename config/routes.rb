@@ -8,7 +8,12 @@ Rails.application.routes.draw do
     end
   
     resources :bookmarks, only: %i[create destroy]
-    resources :comments, only: %i[create edit update destroy]
+    resources :comments, only: %i[create edit update destroy] do
+      member do
+        put "like", to: "comments#like"
+        put "dislike", to: "comments#dislike"
+      end
+    end
     resources :votes, only: %i[create]
   end
 

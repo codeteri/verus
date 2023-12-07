@@ -1,0 +1,3 @@
+<%= turbo_stream.replace 'bookmark_index', partial: 'bookmarks/bookmark_index', locals: { article: @article } %>
+<%= turbo_stream.replace 'bookmark_show', partial: 'bookmarks/bookmark_show', locals: { article: @article } %>
+<%#= turbo_stream.replace 'bookmark_button', partial: 'bookmarks/bookmark_button', locals: { article: @article } %>

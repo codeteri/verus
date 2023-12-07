@@ -1,5 +1,14 @@
 <div class="article-show row">
   <div class="article col-md-9">
+    <div class="bookmark-show" id="bookmark_show">
+      <% unless @article.bookmarked?(current_user) %>
+      <%= link_to article_bookmarks_path(@article, origin: "show"), data: { turbo_method: :post } do %>
+          <i class="fa-regular fa-bookmark"></i>
+        <% end %>
+      <% else  %>
+        <i class="fa-solid fa-bookmark"></i>
+      <% end %>
+    </div>
     <div class="article-head">
       <div class="article-title"><h3><%= @article.title %></h3></div>
       <div class="cover-image" style="background-image: url( <%= @photo_url %> )"></div>
@@ -14,7 +23,7 @@
         <div class="infos-stats">
           <i class="fa-solid fa-chart-simple" style="color: #3c485d;"></i>
           <p>Votes: <%= @article_votes %></p>
-          <i class="fa-regular fa-message"></i>
+          <i class="fa-regular fa-message"> </i>
           <p>Comments: <%= @article_comments %></p>
         </div>
       </div>
@@ -58,9 +67,14 @@
                     <p class="bold-text"><%= comment.user.username %>:</p><p><%= comment.content %> </p><p class="timestamp"><%= comment.created_at %></p>
                   </div>
                   <div class="col comment-likes">
-<!--
-                    <i class="fa-regular fa-thumbs-up" > <%#= comment.likes.size %></i>
-                    <i class="fa-regular fa-thumbs-down"></i> <%#= comment.dislikes.size %></i>-->
+                    <%= link_to like_article_comment_path(@article, comment), data: { turbo_method: :put } do %>
+                      <i class="fa-regular fa-thumbs-up" ></i>
+                    <% end %>
+                    <p><%= comment.likes %></p>
+                    <%= link_to dislike_article_comment_path(@article, comment), data: { turbo_method: :put } do %>
+                      <i class="fa-regular fa-thumbs-down"></i>
+                    <% end %>
+                    <p> <%= comment.dislikes %></p>
                   </div>
                 </div>
               <% end  %>
@@ -70,7 +84,7 @@
         <% else %>
           <div class="before-vote-card">
             <h5>We value your perspective!</h5>
-            <p>How do you feel this article leaning politically?</p>
+            <p>How do you feel this article is leaning politically?</p>
             <br>
             <%= simple_form_for(@new_vote, url: article_votes_path(@article), method: :post) do |form| %>
               <div class="vote-box">
@@ -93,11 +107,21 @@
       <div class="related">
         <% @related_articles.each do |article| %>
           <div class="article-card-sm" >
+            <div class="bookmark-show" id="bookmark_show">
+              <% unless article.bookmarked?(current_user) %>
+              <%= link_to article_bookmarks_path(article, origin: "show"), data: { turbo_method: :post } do %>
+                  <i class="fa-regular fa-bookmark"></i>
+                <% end %>
+              <% else  %>
+                <i class="fa-solid fa-bookmark"></i>
+              <% end %>
+            </div>
             <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
+            <!--<h5><%#= link_to article.title, article_path(article) %></h5>-->
+                <!--<p><%#= article.content[0,35] %>...</p>-->
           </div>
           <div class="article-card-text">
-            <h5><%= link_to article.title, article_path(article) %></h5>
-              <!--<p><%#= article.content[0,35] %>...</p>-->
+            <h5><%= link_to article.title, article_path(article) %>...</h5>
           </div>
         <% end %>
       </div>
@@ -105,6 +129,15 @@
       <div class="related">
         <% @opposing_articles.each do |article| %>
         <div class="article-card-sm">
+          <div class="bookmark-show" id="bookmark_show">
+            <% unless article.bookmarked?(current_user) %>
+            <%= link_to article_bookmarks_path(article, origin: "show"), data: { turbo_method: :post } do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% else  %>
+              <i class="fa-solid fa-bookmark"></i>
+            <% end %>
+          </div>
           <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
           <!--<h5><%#= link_to article.title, article_path(article) %></h5>-->
             <!--<div class="article-card-sm" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%#= article.photo_url if article.photo_url? %> )" >
@@ -113,7 +146,7 @@
               <!--<p><%##= article.content[0,35] %>...</p>-->
           </div>
           <div class="article-card-text">
-            <h5><%= link_to article.title, article_path(article) %></h5>
+            <h5><%= link_to article.title[0,70], article_path(article) %>...</h5>
           </div>
         <% end %>
       </div>
