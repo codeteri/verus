@@ -1,10 +1,25 @@
 <nav>
   <div class="navbar-container">
-    <div class="nav-left">
+    <div class="nav-left d-flex">
       <%= link_to root_path do %>
         <i class="fa-solid fa-house"></i>
       <% end %>
-      <i class="fa-solid fa-magnifying-glass"></i>
+      <div data-controller="toggle">
+        <div data-toggle-target="togglableElement" class="d-none">
+          <%= form_tag(search_articles_path, method: :get, remote: true) do %>
+            <%= text_field_tag(:query, params[:query], placeholder: "Search...") %>
+            <div id="search-results-container"></div>
+            <button data-action="click->toggle#fire" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          <% end %>
+        </div>
+        <div data-toggle-target="togglableElementTwo">
+          <button data-action="click->toggle#fire" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <%= link_to(root_path) { image_tag('veruslogo.png', alt: 'Logo', class: 'logo') } %>

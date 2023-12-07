@@ -1,6 +1,8 @@
 <div class="container my-5" data-controller="get-articles" data-get-articles-api-key-value="<%= ENV['NEWS_API_KEY'] %>">
   <div class="featured">
-    <div class="heading"><h3>Featured Articles</h3></div>
+    <div class="heading">
+        <h3>Featured Articles</h3>
+    </div>
     <div class="featured-articles">
       <% @featured_articles.each do |article| %>
         <div class="article-card">
@@ -42,10 +44,18 @@
         <% end %>
       </div>
     </div>
+
     <div class="latest-articles" data-get-articles-target="list">
-      <div class="heading"><h3>Latest</h3></div>
-      <div class="latest">
-        <% @latest_articles.each do |article| %>
+  <div class="heading-with-sort">
+    <div class="heading"><h3>Latest</h3></div>
+    <div class="sort-by">
+      <%= form_tag('', method: :get) do %>
+        <%= select_tag :sort, options_for_select([['Furthest Right', 'right'], ['Furthest Left', 'left']], selected: params[:sort]), onchange: 'this.form.submit();' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="latest">
+    <% @latest_articles.each do |article| %>
           <div class="article-card">
               <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
             <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
@@ -60,10 +70,13 @@
             <% end %>
           </div>
           </div>
+
         <% end %>
       </div>
     </div>
   </div>
+  <!--<button data-action="click->get-articles#fire"></button>-->
+  <%= button_to "", "#", data: { action: "click->get-articles#fire" } %>
 </div>
             <%# case article.leaning
               when 1 %>

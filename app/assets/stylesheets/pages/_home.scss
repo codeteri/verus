@@ -53,3 +53,15 @@
   background-color: white;
   margin: 10px;
 }
+
+.heading-with-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem; // Adjust this value as needed
+}
+
+.sort-by {
+  align-items: center;
+  padding-right: 1rem; // Adjust this value as needed
+}

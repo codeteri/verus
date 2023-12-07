@@ -5,9 +5,14 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @featured_articles = @articles.sample(3)
     @opposing_articles = @articles.sample(3)
-    @latest_articles = @articles.sample(6)
+
     @new_bookmark = Bookmark.new
     # @article_leaning = article_leaning
+
+    sort_option = params[:sort]
+    @latest_articles = @articles.order(created_at: :desc).limit(6).to_a
+    @latest_articles.sort_by!(&:leaning).reverse! if sort_option == 'right'
+    @latest_articles.sort_by!(&:leaning) if sort_option == 'left'
   end
 
   def show
@@ -38,6 +43,19 @@ class ArticlesController < ApplicationController
         format.html { redirect_to articles_path }
         format.json # Follows the classic Rails flow and look for a create.json view
       end
+    end
+  end
+
+  def search
+    if params[:query].present?
+      @results = Article.search_by_title_and_content(params[:query])
+    else
+      @results = Article.none
+    end
+  
+    respond_to do |format|
+      format.html { render 'search' } # Add this line for HTML format
+      format.json { render partial: 'search_results', locals: { results: @results } }
     end
   end
 
