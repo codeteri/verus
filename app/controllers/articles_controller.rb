@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
     # @article_leaning = article_leaning
 
     sort_option = params[:sort]
-    @latest_articles = @articles.order(created_at: :desc).limit(6).to_a
+    @latest_articles = @articles.order(created_at: :desc).to_a
     @latest_articles.sort_by!(&:leaning).reverse! if sort_option == 'right'
     @latest_articles.sort_by!(&:leaning) if sort_option == 'left'
   end
