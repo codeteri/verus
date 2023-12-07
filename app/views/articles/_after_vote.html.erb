@@ -1,0 +1,14 @@
+<div class="after-vote-display">
+  <h5>Thank you for voting!</h5>
+  <p> <%= article.votes.count %> users have now added their vote to this article </p>
+  <div class="vote-value-cards">
+    <div class="show-user-vote">
+      <p class="bold-text">Your vote: </p>
+      <%= article.votes.last.value %>
+    </div>
+    <div class="show-leaning">
+      <p class="bold-text">Voter Average: </p>
+      <%= article.leaning %>
+    </div>
+  </div>
+</div>
