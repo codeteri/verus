@@ -8,11 +8,9 @@ class CommentsController < ApplicationController
     @new_comment.user = current_user
     respond_to do |format|
       if @new_comment.save
-        format.html { redirect_to article_path(@article) }
-        format.json # Follows the classic Rails flow and look for a create.json view
+        format.js # Follows the classic Rails flow and look for a create.json view
       else
-        format.html { render "comments/new", status: :unprocessable_entity }
-        format.json # Follows the classic Rails flow and look for a create.json view
+        format.html { redirect_to article_path(@article) }
       end
     end
     # if @new_comment.save

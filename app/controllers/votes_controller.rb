@@ -6,9 +6,9 @@ class VotesController < ApplicationController
     @new_vote.article = @article
     @new_vote.user = current_user
     if @new_vote.save
-      redirect_to article_path(@article)
+      redirect_to article_path(@article, anchor: "anchor"), notice: "Thank you for voting!"
     else
-      render 'new'
+      redirect_to article_path(@article), notice: "Something went wrong"
     end
   end
 

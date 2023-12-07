@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="prevent-reload"
 
 export default class extends Controller {
-  static targets = ["form", "items"]
+  static targets = ["form"]
 
   stayOnPage(event) {
     event.preventDefault()
