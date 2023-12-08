@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @featured_articles = @articles.sample(3)
-    @opposing_articles = @articles.sample(3)
+    @opposing_articles = @articles.sample(6)
 
     @new_bookmark = Bookmark.new
     # @article_leaning = article_leaning

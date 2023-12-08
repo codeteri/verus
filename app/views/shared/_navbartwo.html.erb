@@ -30,7 +30,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
           <% if user_signed_in? %>
-            <%= link_to "View profile", dashboard_path(view: 'bookmarked'), class: "dropdown-item" %>
+            <%= link_to "View profile", dashboard_path(view: 'bookmarked', default_param: "/dashboard?view=bookmarked"), class: "dropdown-item" %>
+            <%#= link_to "View profile", "/dashboard?view=bookmarked", class: "dropdown-item" %>
+            <%#= link_to "View profile", dashboard_path(view: 'bookmarked'), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
           <% else %>
             <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
