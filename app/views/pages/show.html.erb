@@ -6,9 +6,10 @@
       Consensus Score: <%= current_user.consensus_score.round(2) %>
       <i class="fas fa-question-circle tooltip-icon" title="0 is the perfect score, the higher it gets, the more you diverge from the consensus"></i>
     </div>
+    <br>
 
     <%= link_to 'Bookmarked', dashboard_path(view: 'bookmarked'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' }, class: (@view == 'bookmarked' ? 'active' : '') %>
-    <%= link_to 'Commented Articles', dashboard_path(view: 'chats'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
+    <%= link_to 'Commented', dashboard_path(view: 'chats'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
     <%= link_to 'Account Details', dashboard_path(view: 'account_details'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
 
 

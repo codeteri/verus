@@ -1,25 +1,34 @@
 <div class="comment-section">
-  <h5>Join the conversation</h5>
+  <div class="comments-header"><h3>Comments</h3></div>
   <br>
   <div class="add-comment">
     <%= simple_form_for [article, new_comment], remote: true do |form| %>
-      <%= form.input :content, label: false, placeholder: 'Add a comment...' %>
-      <%= form.submit 'Submit Comment' %>
+      <%= form.input :content, label: false, placeholder: 'Join the conversation...' %>
+      <%= form.submit 'Submit' %>
     <% end %>
   </div>
   <br>
   <% if article.comments.any? %>
-    <h5>Comments</h5>
-    <div class="comments" id="anchor" >
+<!--    <h5>Comments</h5>-->
+    <div class="comments" >
       <% article.comments.reverse_each do |comment| %>
-        <div class="show-comment">
-          <div class="comment-content">
-            <div class="username">
-              <%= image_tag('user.png', alt: 'User avatar', class: 'user-avatar') %>
-              <p class="bold-text"><%= comment.user.username %>:</p>
+        <div class="comment-content">
+          <div class="show-comment">
+            <div class="comment-user">
+              <div class="avatar">
+                <%= image_tag('user.png', alt: 'User avatar', class: 'user-avatar') %>
+              </div>
+              <div class="consensus-score">
+                <%= image_tag("https://static.thenounproject.com/png/5730574-200.png", alt: "Consensus Score Icon", class: "consensus-icon") %>
+                <%= current_user.consensus_score.round(2) %>
+                <i class="fas fa-question-circle tooltip-icon" title="Consensus Score: 0 is the perfect score, the higher it gets, the more this user is diverging from the voter average"></i>
+              </div>
             </div>
-            <p><%= comment.content %> </p>
-            <p class="timestamp"><%= comment.created_at %></p>
+            <div class="comment-text">
+              <p class="bold-text"><%= comment.user.username %>:</p>
+              <p><%= comment.content %> </p>
+              <p class="timestamp"><%= comment.created_at %></p>
+            </div>
           </div>
           <div class="comment-likes">
             <%= link_to like_article_comment_path(article, comment), data: { turbo_method: :put } do %>
@@ -36,4 +45,3 @@
     </div>
   <% end %>
 </div>
-

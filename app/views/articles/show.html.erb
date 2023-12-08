@@ -33,7 +33,7 @@
         <div class="article-content " style="white-space: pre-line;">
           <p><%= @article.content %></p>
         </div>
-        <div id="below-article">
+        <div id="below-article" id="anchor">
           <% if @user_vote.present? %>
             <%= render "articles/after_vote", article: @article %>
             <%= render "articles/comments", article: @article, new_comment: @new_comment %>
