@@ -175,7 +175,7 @@ right_articles = Article.last(14)
 right_users.each do |user|
   right_articles.each do |article|
     # Assuming you have a range of possible values for votes, adjust as needed
-    value = rand(3..5)
+    value = rand(3..5).round(2)
 
     # Create a vote
     vote = Vote.create!(
