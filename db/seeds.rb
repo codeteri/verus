@@ -43,7 +43,7 @@ puts "User Bob Created"
 
 
 
-10.times do
+20.times do
   User.create(
     email: Faker::Internet.unique.email,
     username: Faker::Internet.unique.username,
@@ -152,12 +152,27 @@ users.each do |user|
     value = rand(1..5)
 
     # Create a vote
-    Vote.create!(
-      user: user,
-      article: article,
-      value: value
-    )
+    vote = Vote.create!(
+              user: user,
+              article: article,
+              value: value
+            )
+            vote.calculate_average_score
   end
 end
 
 puts "#{Vote.count} votes created"
+
+puts "Calculating consensus scores for users"
+
+# Calculate consensus scores for users
+users.each do |user|
+  puts "Calculating consensus score for user #{user.id}..."
+  user.update(consensus_score: user.consensus_score)
+end
+
+puts "Consensus scores calculated for users"
+
+puts "creating jacks account"
+User.create(email:"jack@barhamfamily.com", username: "Jack", password: "123456", password_confirmation: '123456', consensus_score: 4)
+puts "User Jack Created"
