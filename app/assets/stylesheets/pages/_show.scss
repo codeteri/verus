@@ -15,6 +15,14 @@
 
 }
 
+.inline-display {
+  display: inline-flex;
+  h5 {
+  margin-left: 8px;
+  margin-bottom: 3px;
+  }
+}
+
 .article-title {
   display: flex;
   padding-top: 10px;
@@ -104,6 +112,7 @@
   p {
     font-size: 14px;
     opacity: .9;
+    padding-top: 2px;
     // margin: 0;
     }
 }

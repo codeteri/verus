@@ -8,15 +8,30 @@
     </div>
     <br>
 
-    <%= link_to 'Bookmarked', dashboard_path(view: 'bookmarked'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' }, class: (@view == 'bookmarked' ? 'active' : '') %>
+    <%= link_to 'Bookmarked', dashboard_path(view: 'bookmarked'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' }  %>
     <%= link_to 'Commented', dashboard_path(view: 'chats'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
     <%= link_to 'Account Details', dashboard_path(view: 'account_details'), data: { turbo_frame: 'main-content-frame', turbo_action: 'replace' } %>
-
 
   </div>
 
   <div class="main-content" id="main-content">
     <turbo-frame id="main-content-frame">
+        <div class="bookmarked-heading"><h3>Bookmarked Articles</h3></div>
+          <div class="bookmarked">
+            <% @bookmarked_articles.reverse_each do |article| %>
+              <div class="article-card">
+                <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
+                <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
+                <h5><%= link_to article.title, article_path(article) %></h5>
+                  <div class="article-source">
+                    <p>Source: <%= article.source %></p>
+                  </div>
+                <div class="bookmark-index">
+                  <i class="fa-solid fa-bookmark"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
     </turbo-frame>
   </div>
 </div>

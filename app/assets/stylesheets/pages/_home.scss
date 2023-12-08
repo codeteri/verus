@@ -19,14 +19,15 @@
 .index-body {
   margin: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-radius: 6px;
+  // background-color: white;
 }
 
 .opposing-articles {
-  width: 400px;
+  width: 410px;
   background-color: white;
-  margin: 10px;
+  // margin: 10px;
   // padding: 15px;
   // border-radius: 1px;
   // border-style: solid;
@@ -37,6 +38,7 @@
   // margin: 20px;
   padding: 10px;
   grid-gap: 1rem;
+  margin-left: 10px;
 }
 
 .latest {
@@ -44,22 +46,25 @@
   // margin: 20px;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
+  margin-left: 10px;
   padding: 1rem;
   flex-grow: 0.5;
   padding: 10px;
+  justify-content: center;
 }
 
 .latest-articles {
   width: 790px;
   // padding: 15px;
   background-color: white;
-  margin: 10px;
+  // margin: 10px;
 }
 
 .heading-with-sort {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 10px;
   padding: 0 1rem; // Adjust this value as needed
 }
 
