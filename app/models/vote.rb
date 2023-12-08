@@ -5,7 +5,8 @@ class Vote < ApplicationRecord
   validates :value, presence: true
 
   def calculate_average_score
-    self.average_score = article.votes.average(:value).to_f
-    self.save
+    votes_except_current = article.votes.where.not(id: id)
+    self.average_score = votes_except_current.average(:value).to_f
+    save
   end
 end
