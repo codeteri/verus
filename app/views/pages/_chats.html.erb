@@ -6,6 +6,9 @@
         <div class="vote-overlay" style="<%= article.leaning_style %>"> <%= article.leaning_string %> </div>
         <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
         <h5><%= link_to article.title, article_path(article) %></h5>
+        <div class="article-source">
+          <p>Source: <%= article.source %></p>
+        </div>
         <div class="bookmark-index">
           <i class="fa-solid fa-bookmark"></i>
         </div>

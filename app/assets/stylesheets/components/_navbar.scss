@@ -10,16 +10,22 @@
 }
 
 .navbar-container {
+  position: relative;
   display: flex;
+  height: 83px;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   padding-left: 30px;
   padding-right: 30px;
-  font-size: 22px;
+  font-size: 16px;
   i {
-    color: rgb(38, 38, 53);
+    color: #545F70;
     margin-right: 20px;
+    font-size: 20px;
+  }
+  a.hover {
+    color: #242930;
   }
 }
 
@@ -36,6 +42,10 @@
 }
 
 .logo {
-  position: center;
-  max-width: 220px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 220px;
+  margin-left: -110px;
+
 }

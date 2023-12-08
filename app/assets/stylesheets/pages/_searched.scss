@@ -1,0 +1,26 @@
+.searched {
+  display: grid;
+  // margin: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 1rem;
+  flex-grow: 0.5;
+  padding-left: 60px;
+  padding-right: 30px;
+  background-color: white;
+
+  .article-card {
+    margin-bottom: 10px;
+  }
+}
+
+.searched-heading {
+  height: 60px;
+  padding-top: 30px;
+  padding-left: 70px;
+  text-align: left;
+  // border-radius: 1px;
+  // border-style: solid;
+  // border-color: red;
+  background-color: white;
+}

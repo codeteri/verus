@@ -65,14 +65,14 @@
               <p>Source: <%= article.source %></p>
             </div>
             <div class="bookmark-index" id="bookmark_index">
-            <% unless article.bookmarked?(current_user) %>
-            <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
-                <i class="fa-regular fa-bookmark"></i>
+              <% unless article.bookmarked?(current_user) %>
+              <%= link_to article_bookmarks_path(article, origin: "index"), data: { turbo_method: :post } do %>
+                  <i class="fa-regular fa-bookmark"></i>
+                <% end %>
+              <% else  %>
+                <i class="fa-solid fa-bookmark"></i>
               <% end %>
-            <% else  %>
-              <i class="fa-solid fa-bookmark"></i>
-            <% end %>
-          </div>
+            </div>
           </div>
         <% end %>
       </div>
