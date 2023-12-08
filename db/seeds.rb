@@ -8,6 +8,7 @@ Article.destroy_all
 User.destroy_all
 Bookmark.destroy_all
 Comment.destroy_all
+Vote.destroy_all
 
 def url_valid?(url)
   response = HTTParty.get(url)
@@ -174,7 +175,7 @@ right_articles = Article.last(14)
 right_users.each do |user|
   right_articles.each do |article|
     # Assuming you have a range of possible values for votes, adjust as needed
-    value = rand(3..5)
+    value = rand(3..5).round(2)
 
     # Create a vote
     vote = Vote.create!(
@@ -192,8 +193,9 @@ puts "Calculating consensus scores for users"
 
 # Calculate consensus scores for users
 users.each do |user|
-  puts "Calculating consensus score for user #{user.calculate_consensus_score}..."
-  user.update(consensus_score: user.calculate_consensus_score)
+  puts "Calculating consensus score for user..."
+  new_score = user.calculate_consensus_score
+  user.update(consensus_score: new_score)
 end
 
 puts "Consensus scores calculated for users"
@@ -201,4 +203,4 @@ puts "Consensus scores calculated for users"
 puts "creating lulus account"
 lulu = User.create(email: "lulu@barham.com", username: "Lulu", password: "123456", password_confirmation: '123456')
 lulu.update(consensus_score: 4.2)
-puts "User Lulu Created #{lulu.consensus_score}"
+# puts "User Lulu Created #{lulu.consensus_score}"

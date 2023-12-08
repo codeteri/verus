@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?
 
-  attribute :consensus_score, :float, default: 0.00
+  attribute :consensus_score, :float, default: rand(0..5.00)
 
   def calculate_consensus_score
     total_difference = votes.sum do |vote|

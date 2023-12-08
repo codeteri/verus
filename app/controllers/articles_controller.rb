@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
     @user_vote = @article.votes.where(user_id: current_user.id)
     @new_comment = Comment.new
     @new_bookmark = Bookmark.new
+  
   end
 
   def new

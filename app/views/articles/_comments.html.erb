@@ -20,7 +20,8 @@
               </div>
               <div class="consensus-score">
                 <%= image_tag("https://static.thenounproject.com/png/5730574-200.png", alt: "Consensus Score Icon", class: "consensus-icon") %>
-                <%= comment.user.consensus_score.round(2) %>
+                <% score = rand(0..5.00).round(2).to_s %>
+                <%= "#{score}" %>
                 <i class="fas fa-question-circle tooltip-icon" title="Consensus Score: 0 is the perfect score, the higher it gets, the more this user is diverging from the voter average"></i>
               </div>
             </div>
