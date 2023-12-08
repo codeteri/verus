@@ -192,12 +192,13 @@ puts "Calculating consensus scores for users"
 
 # Calculate consensus scores for users
 users.each do |user|
-  puts "Calculating consensus score for user #{user.consensus_score}..."
-  user.update(consensus_score: user.consensus_score)
+  puts "Calculating consensus score for user #{user.calculate_consensus_score}..."
+  user.update(consensus_score: user.calculate_consensus_score)
 end
 
 puts "Consensus scores calculated for users"
 
-puts "creating jacks account"
-User.create(email:"lulu@barham.com", username: "Jack", password: "123456", password_confirmation: '123456', consensus_score: 4.1)
-puts "User Jack Created"
+puts "creating lulus account"
+lulu = User.create(email: "lulu@barham.com", username: "Lulu", password: "123456", password_confirmation: '123456')
+lulu.update(consensus_score: 4.2)
+puts "User Lulu Created #{lulu.consensus_score}"
