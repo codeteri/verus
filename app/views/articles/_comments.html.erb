@@ -1,15 +1,15 @@
 <div class="comment-section">
-  <h5>Join the conversation</h5>
+  <h4>Comments</h4>
   <br>
   <div class="add-comment">
+    <!--<h5>Join the conversation</h5>-->
     <%= simple_form_for [article, new_comment], remote: true do |form| %>
-      <%= form.input :content, label: false, placeholder: 'Add a comment...' %>
+      <%= form.input :content, label: false, placeholder: 'Be part of the conversation...' %>
       <%= form.submit 'Submit Comment' %>
     <% end %>
   </div>
   <br>
   <% if article.comments.any? %>
-    <h5>Comments</h5>
     <div class="comments" id="anchor" >
       <% article.comments.reverse_each do |comment| %>
         <div class="show-comment">
@@ -36,4 +36,3 @@
     </div>
   <% end %>
 </div>
-

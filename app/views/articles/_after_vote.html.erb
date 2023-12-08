@@ -2,12 +2,14 @@
   <h5>Thank you for voting!</h5>
   <div class="vote-distribution">
     <h3>Voting Distribution</h3>
+    <p>Our reader consensus is that this article is leaning:</p>
+    <h5> <%= article.leaning_string %> </h5>
     <div class="progress">
-      <div class="progress-bar progress-bar-far_left" style="width: <%= @article.vote_distribution_percentage(1) %>%;"></div>
-      <div class="progress-bar progress-bar-left" style="width: <%= @article.vote_distribution_percentage(2) %>%;"></div>
-      <div class="progress-bar progress-bar-neutral" style="width: <%= @article.vote_distribution_percentage(3) %>%;"></div>
-      <div class="progress-bar progress-bar-right" style="width: <%= @article.vote_distribution_percentage(4) %>%;"></div>
-      <div class="progress-bar progress-bar-far_right" style="width: <%= @article.vote_distribution_percentage(5) %>%;"></div>
+      <div class="progress-bar progress-bar-far_left" style="width: <%= article.vote_distribution_percentage(1) %>%;"></div>
+      <div class="progress-bar progress-bar-left" style="width: <%= article.vote_distribution_percentage(2) %>%;"></div>
+      <div class="progress-bar progress-bar-neutral" style="width: <%= article.vote_distribution_percentage(3) %>%;"></div>
+      <div class="progress-bar progress-bar-right" style="width: <%= article.vote_distribution_percentage(4) %>%;"></div>
+      <div class="progress-bar progress-bar-far_right" style="width: <%= article.vote_distribution_percentage(5) %>%;"></div>
     </div>
   </div>
 </div>
