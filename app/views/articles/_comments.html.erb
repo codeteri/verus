@@ -2,6 +2,7 @@
   <div class="comments-header"><h3>Comments</h3></div>
   <br>
   <div class="add-comment">
+    <!--<h5>Join the conversation</h5>-->
     <%= simple_form_for [article, new_comment], remote: true do |form| %>
       <%= form.input :content, label: false, placeholder: 'Join the conversation...' %>
       <%= form.submit 'Submit' %>
@@ -9,7 +10,6 @@
   </div>
   <br>
   <% if article.comments.any? %>
-<!--    <h5>Comments</h5>-->
     <div class="comments" >
       <% article.comments.reverse_each do |comment| %>
         <div class="comment-content">

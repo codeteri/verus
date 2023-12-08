@@ -4,7 +4,7 @@ class Article < ApplicationRecord
   has_many :votes, dependent: :destroy
 
   validates :title, presence: true
-  validates :title, uniqueness: true
+  # validates :title, uniqueness: true
   validates :author, presence: true
   validates :source, presence: true
   validates :content, presence: true
@@ -34,12 +34,13 @@ class Article < ApplicationRecord
     end
   end
 
-  def vote_distribution_percentage(value)
+  def vote_distribution_percentage(val)
     total_votes = votes.count
     return 0 if total_votes.zero?
 
-    value_votes = votes.where(value: value).count
-    (value_votes.to_f / total_votes) * 100
+    value_votes = votes.where(value: val).count
+    vote_distribution_percentage = (value_votes.to_f / total_votes) * 100
+    vote_distribution_percentage.round(0)
   end
 
   def leaning_string
