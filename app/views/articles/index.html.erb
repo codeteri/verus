@@ -54,11 +54,6 @@
     <div class="latest-articles" data-get-articles-target="list">
   <div class="heading-with-sort">
     <div class="heading-latest"><h3>Latest</h3></div>
-    <div class="sort-by">
-      <%= form_tag('', method: :get) do %>
-        <%= select_tag :sort, options_for_select([['Furthest Right', 'right'], ['Furthest Left', 'left']], selected: params[:sort]), onchange: 'this.form.submit();' %>
-      <% end %>
-    </div>
   </div>
   <div class="latest">
     <% @latest_articles.each do |article| %>
