@@ -5,6 +5,10 @@ require_relative './raw_articles'
 
 puts "Cleaning up database..."
 Article.destroy_all
+User.destroy_all
+Bookmark.destroy_all
+Comment.destroy_all
+
 def url_valid?(url)
   response = HTTParty.get(url)
   response.code == 200
@@ -43,7 +47,7 @@ puts "User Bob Created"
 
 
 
-20.times do
+10.times do
   User.create(
     email: Faker::Internet.unique.email,
     username: Faker::Internet.unique.username,
@@ -146,10 +150,31 @@ puts "creating votes"
 
 articles = Article.all
 
-users.each do |user|
-  articles.each do |article|
+left_users = User.limit(5)
+left_articles = Article.limit(14)
+
+left_users.each do |user|
+  left_articles.each do |article|
     # Assuming you have a range of possible values for votes, adjust as needed
-    value = rand(1..5)
+    value = rand(1..3)
+
+    # Create a vote
+    vote = Vote.create!(
+              user: user,
+              article: article,
+              value: value
+            )
+            vote.calculate_average_score
+  end
+end
+
+right_users = User.last(6)
+right_articles = Article.last(14)
+
+right_users.each do |user|
+  right_articles.each do |article|
+    # Assuming you have a range of possible values for votes, adjust as needed
+    value = rand(3..5)
 
     # Create a vote
     vote = Vote.create!(
@@ -167,12 +192,12 @@ puts "Calculating consensus scores for users"
 
 # Calculate consensus scores for users
 users.each do |user|
-  puts "Calculating consensus score for user #{user.id}..."
+  puts "Calculating consensus score for user #{user.consensus_score}..."
   user.update(consensus_score: user.consensus_score)
 end
 
 puts "Consensus scores calculated for users"
 
 puts "creating jacks account"
-User.create(email:"jack@barhamfamily.com", username: "Jack", password: "123456", password_confirmation: '123456', consensus_score: 4)
+User.create(email:"lulu@barham.com", username: "Jack", password: "123456", password_confirmation: '123456', consensus_score: 4.1)
 puts "User Jack Created"
