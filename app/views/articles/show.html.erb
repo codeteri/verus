@@ -22,7 +22,7 @@
           <p><%= @article.date %></p>
         </div>
         <div class="infos-stats">
-          <i class="fa-solid fa-chart-simple" style="color: #3c485d;"></i>
+          <i class="fa-solid fa-chart-simple" style="color: #3C485D;"></i>
           <p>Votes: <%= @article_votes %></p>
           <i class="fa-regular fa-message"> </i>
           <p>Comments: <%= @article_comments %></p>
@@ -30,10 +30,11 @@
       </div>
     </div>
     <div class="article-body">
+      <div class="article-content">
         <div class="article-content " style="white-space: pre-line;">
           <p><%= @article.content %></p>
         </div>
-        <div id="below-article">
+        <div id="below-article" id="anchor">
           <% if @user_vote.present? %>
             <%= render "articles/after_vote", article: @article %>
             <%= render "articles/comments", article: @article, new_comment: @new_comment %>
@@ -41,34 +42,36 @@
             <%= render "articles/before_vote", article: @article, new_vote: @new_vote %>
           <% end %>
         </div>
+       </div>
     </div>
   </div>
   <div class="col-md-3 article-sidebar">
-    <div class="sidebar-title"><h5>Related Articles</h5></div>
-    <div class="related">
-      <% @related_articles.each do |article| %>
-        <div class="article-card-sm" >
-          <div class="bookmark-show" id="bookmark_show">
-            <% unless article.bookmarked?(current_user) %>
-            <%= link_to article_bookmarks_path(article, origin: "show"), data: { turbo_method: :post } do %>
-                <i class="fa-regular fa-bookmark"></i>
+      <!--<div class="heading"><h5>Insights</h5></div>-->
+      <div class="sidebar-title"><h5>Related Articles</h5></div>
+      <div class="related">
+        <% @related_articles.each do |article| %>
+          <div class="article-card-sm" >
+            <div class="bookmark-show" id="bookmark_show">
+              <% unless article.bookmarked?(current_user) %>
+              <%= link_to article_bookmarks_path(article, origin: "show"), data: { turbo_method: :post } do %>
+                  <i class="fa-regular fa-bookmark"></i>
+                <% end %>
+              <% else  %>
+                <i class="fa-solid fa-bookmark"></i>
               <% end %>
-            <% else  %>
-              <i class="fa-solid fa-bookmark"></i>
-            <% end %>
+            </div>
+            <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
+            <!--<h5><%#= link_to article.title, article_path(article) %></h5>-->
+                <!--<p><%#= article.content[0,35] %>...</p>-->
           </div>
-          <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
-          <!--<h5><%#= link_to article.title, article_path(article) %></h5>-->
-              <!--<p><%#= article.content[0,35] %>...</p>-->
-        </div>
-        <div class="article-card-text">
-          <h5><%= link_to article.title, article_path(article) %>...</h5>
-        </div>
-      <% end %>
-    </div>
-    <div class="sidebar-title"><h5>Opposing Views</h5></div>
-    <div class="related">
-      <% @opposing_articles.each do |article| %>
+          <div class="article-card-text">
+            <h5><%= link_to article.title, article_path(article) %>...</h5>
+          </div>
+        <% end %>
+      </div>
+      <div class="sidebar-title"><h5>Opposing Views</h5></div>
+      <div class="related">
+        <% @opposing_articles.each do |article| %>
         <div class="article-card-sm">
           <div class="bookmark-show" id="bookmark_show">
             <% unless article.bookmarked?(current_user) %>
@@ -80,11 +83,17 @@
             <% end %>
           </div>
           <%= image_tag(article.photo_url, data: { get_articles_target: "image", action: "error->get-articles#changeUrl"}) if article.photo_url? %>
+          <!--<h5><%#= link_to article.title, article_path(article) %></h5>-->
+            <!--<div class="article-card-sm" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%#= article.photo_url if article.photo_url? %> )" >
+            <div class="article-card-text">
+              <h5><%#= link_to article.title, article_path(article) %></h5>
+              <!--<p><%##= article.content[0,35] %>...</p>-->
           </div>
-        <div class="article-card-text">
-          <h5><%= link_to article.title[0,70], article_path(article) %>...</h5>
-        </div>
-      <% end %>
+          <div class="article-card-text">
+            <h5><%= link_to article.title[0,70], article_path(article) %>...</h5>
+          </div>
+        <% end %>
+      </div>
+      </div>
     </div>
-  </div>
 </div>

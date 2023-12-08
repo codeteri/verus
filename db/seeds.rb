@@ -62,7 +62,7 @@ puts "Creating Bookmarks"
 users.each do |user|
   4.times do
     # Select a random article
-    article = Article.all.sample 
+    article = Article.all.sample
     # p article.title
     unless article.bookmarked?(user)
       Bookmark.create!(
